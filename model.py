@@ -5,10 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
-# Replace this with your code!
-
-
-def connect_to_db(flask_app, db_uri="postgresql:///ratings", echo=True):
+def connect_to_db(flask_app, db_uri="postgresql:///ratings", echo=False):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     flask_app.config["SQLALCHEMY_ECHO"] = echo
     flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -68,6 +65,7 @@ class Rating(db.Model):
 
 if __name__ == "__main__":
     from server import app
+    connect_to_db(app)
 
     # Call connect_to_db(app, echo=False) if your program output gets
     # too annoying; this will tell SQLAlchemy not to print out every
